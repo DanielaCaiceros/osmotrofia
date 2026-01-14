@@ -1,0 +1,60 @@
+=== PROMPT ORIGINAL ===
+
+Genera una imagen fotorealista de una colonia de hongos que representa el estado actual de una computadora.
+
+PARÁMETROS BIOLÓGICOS A REPRESENTAR:
+
+**TEMPERATURA Y AMBIENTE**
+Temperatura óptima, hongos saludables con colores naturales y vibrantes.
+- Colores dominantes: marrones naturales, beige, dorado suave, blanco cremoso
+- Textura: superficie suave y ligeramente húmeda, natural
+
+**HIDRATACIÓN (Batería: 100%)**
+Alta hidratación, hongos turgentes y brillantes.
+- Estado de los hongos: cuerpos fructíferos llenos, con brillo de humedad
+
+**OXIGENACIÓN (Ventilación)**
+Ventilación adecuada, crecimiento saludable.
+- Densidad: textura estándar, bien oxigenados
+
+**DENSIDAD POBLACIONAL (RAM: 81.5%)**
+Alta densidad, hongos apiñados y compitiendo por espacio.
+- Distribución: sobrepoblación, hongos creciendo unos sobre otros
+
+**ESPACIO VITAL (Almacenamiento: 10.4%)**
+Amplio espacio disponible, territorio expandido.
+- Crecimiento: hongos pueden crecer libremente en todas direcciones
+
+**METABOLISMO (CPU: 38.6%)**
+Metabolismo activo, crecimiento visible.
+- Intensidad visual: colores saturados, señales de vida activa
+
+**SALUD GENERAL DEL ECOSISTEMA: 73.9%**
+Ecosistema moderadamente saludable, algunas áreas de estrés.
+
+ESTILO VISUAL:
+- Fotografía macro de alta calidad, iluminación natural difusa
+- Textura realista de hongos con detalles visibles (lamelas, poros, esporas)
+- Profundidad de campo para dar sensación tridimensional
+- Ambiente orgánico y natural, como un bosque microscópico
+- Sin texto, sin números, solo la representación visual pura
+
+COMPOSICIÓN:
+- Vista cenital o lateral de la colonia
+- Fondo de sustrato orgánico (tierra, madera, material en descomposición)
+- Múltiples especies de hongos si hay variedad de condiciones
+- Atmósfera coherente con las condiciones descritas
+
+La imagen debe sentirse VIVA y representar visualmente el estado de salud de la computadora a través de la metáfora de los hongos.
+
+=== DESCRIPCIÓN MEJORADA ===
+
+**Prompt para Generador de Imágenes AI:**
+
+Fotografía macro extremadamente detallada de una colonia de hongos vibrante y densa, creciendo sobre un sustrato orgánico rico y oscuro que recuerda a tierra forestal en descomposición y astillas de madera húmeda. La iluminación es natural y difusa, filtrándose suavemente para resaltar la intrincada arquitectura de los hongos. La vista es ligeramente cenital, revelando una profusión de cuerpos fructíferos apiñados, compitiendo por espacio, con una densidad notable.
+
+Predominan tonos marrones cálidos, beiges suaves y dorados sutiles, contrastando con un blanco cremoso en los bordes de algunos sombreros. La textura es primordial: observe el sutil brillo húmedo sobre las superficies turgentes de los hongos, indicando alta hidratación. Los detalles microscópicos son cruciales: lamelas finas y expuestas bajo algunos sombreros, poros diminutos en otras especies, e incluso la sutil presencia de esporas translúcidas adheridas a ciertas áreas.
+
+La composición revela áreas de crecimiento exuberante donde los hongos se extienden libremente, llenos y vibrantes, y áreas ligeramente más estresadas, donde los colores son ligeramente menos saturados y los cuerpos fructíferos están más cercanos, pero aun así presentan signos de vitalidad. La profundidad de campo es crucial, enfocándose nítidamente en el centro de la colonia y difuminando suavemente los bordes para crear una sensación tridimensional inmersiva de profundidad y escala microscópica.
+
+Algunos hongos exhiben una saturación de color ligeramente más intensa, sugiriendo un metabolismo activo y un crecimiento rápido. Busca sutiles variaciones en las especies de hongos, reflejando la diversidad dentro de la colonia. Captura la esencia de un bosque en miniatura, donde cada detalle cuenta una historia de vida, crecimiento y el delicado equilibrio de un ecosistema. La atmósfera general debe sentirse viva y orgánica, emanando una sensación de humedad, tierra y la vitalidad de la vida fúngica.

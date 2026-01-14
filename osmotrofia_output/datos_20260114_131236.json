@@ -1,0 +1,54 @@
+{
+  "timestamp": "20260114_131236",
+  "parametros": {
+    "timestamp": "2026-01-14T13:12:35.373464",
+    "hardware": {
+      "temperatura": {
+        "cpu": 54.0
+      },
+      "bateria": {
+        "porcentaje": 100,
+        "conectado": true
+      },
+      "ventiladores": {
+        "activos": true,
+        "velocidad_estimada": "alta"
+      }
+    },
+    "software": {
+      "sistema_operativo": {
+        "nombre": "Darwin",
+        "version": "Darwin Kernel Version 25.0.0: Mon Aug 25 21:17:53 PDT 2025; root:xnu-12377.1.9~3/RELEASE_ARM64_T8112",
+        "actualizado": "desconocido"
+      },
+      "procesos": {
+        "total": 509,
+        "innecesarios": 63,
+        "pesados": 0
+      },
+      "seguridad": {
+        "antivirus_activo": false,
+        "firewall": "desconocido"
+      }
+    },
+    "rendimiento": {
+      "cpu": {
+        "uso_porcentaje": 38.6,
+        "nucleos": 8,
+        "frecuencia": 3504
+      },
+      "ram": {
+        "uso_porcentaje": 81.5,
+        "total_gb": 8.0,
+        "disponible_gb": 1.48
+      },
+      "almacenamiento": {
+        "uso_porcentaje": 10.4,
+        "total_gb": 460.43,
+        "libre_gb": 135.86
+      }
+    }
+  },
+  "salud_general": 73.9,
+  "prompt": "Genera una imagen fotorealista de una colonia de hongos que representa el estado actual de una computadora.\n\nPARÁMETROS BIOLÓGICOS A REPRESENTAR:\n\n**TEMPERATURA Y AMBIENTE**\nTemperatura óptima, hongos saludables con colores naturales y vibrantes.\n- Colores dominantes: marrones naturales, beige, dorado suave, blanco cremoso\n- Textura: superficie suave y ligeramente húmeda, natural\n\n**HIDRATACIÓN (Batería: 100%)**\nAlta hidratación, hongos turgentes y brillantes.\n- Estado de los hongos: cuerpos fructíferos llenos, con brillo de humedad\n\n**OXIGENACIÓN (Ventilación)**\nVentilación adecuada, crecimiento saludable.\n- Densidad: textura estándar, bien oxigenados\n\n**DENSIDAD POBLACIONAL (RAM: 81.5%)**\nAlta densidad, hongos apiñados y compitiendo por espacio.\n- Distribución: sobrepoblación, hongos creciendo unos sobre otros\n\n**ESPACIO VITAL (Almacenamiento: 10.4%)**\nAmplio espacio disponible, territorio expandido.\n- Crecimiento: hongos pueden crecer libremente en todas direcciones\n\n**METABOLISMO (CPU: 38.6%)**\nMetabolismo activo, crecimiento visible.\n- Intensidad visual: colores saturados, señales de vida activa\n\n**SALUD GENERAL DEL ECOSISTEMA: 73.9%**\nEcosistema moderadamente saludable, algunas áreas de estrés.\n\nESTILO VISUAL:\n- Fotografía macro de alta calidad, iluminación natural difusa\n- Textura realista de hongos con detalles visibles (lamelas, poros, esporas)\n- Profundidad de campo para dar sensación tridimensional\n- Ambiente orgánico y natural, como un bosque microscópico\n- Sin texto, sin números, solo la representación visual pura\n\nCOMPOSICIÓN:\n- Vista cenital o lateral de la colonia\n- Fondo de sustrato orgánico (tierra, madera, material en descomposición)\n- Múltiples especies de hongos si hay variedad de condiciones\n- Atmósfera coherente con las condiciones descritas\n\nLa imagen debe sentirse VIVA y representar visualmente el estado de salud de la computadora a través de la metáfora de los hongos."
+}
