@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍄 OSMOTROFIA - Ecosistema Fúngico Digital Vivo</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Canvas para Three.js -->
+    <canvas id="canvas3d"></canvas>
+
+    <!-- UI Overlay -->
+    <div id="ui-overlay">
+        <!-- Header -->
+        <div id="header">
+            <h1>🍄 OSMOTROFIA</h1>
+            <p class="subtitle">Ecosistema Fúngico Digital Vivo</p>
+        </div>
+
+        <!-- Panel de estadísticas -->
+        <div id="stats-panel">
+            <div class="stat-section">
+                <h3>💻 Sistema</h3>
+                <div class="stat-row">
+                    <span class="stat-label">CPU:</span>
+                    <span class="stat-value" id="cpu-uso">--%</span>
+                    <div class="stat-bar"><div class="stat-fill" id="cpu-bar"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">RAM:</span>
+                    <span class="stat-value" id="ram-uso">--%</span>
+                    <div class="stat-bar"><div class="stat-fill" id="ram-bar"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Disco:</span>
+                    <span class="stat-value" id="disco-uso">--%</span>
+                    <div class="stat-bar"><div class="stat-fill" id="disco-bar"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Temp:</span>
+                    <span class="stat-value" id="temp-cpu">--°C</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Batería:</span>
+                    <span class="stat-value" id="bateria">--%</span>
+                </div>
+            </div>
+
+            <div class="stat-section">
+                <h3>📧 Gmail</h3>
+                <div class="stat-row">
+                    <span class="stat-label">Total:</span>
+                    <span class="stat-value" id="gmail-total">--</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">⭐ Importantes:</span>
+                    <span class="stat-value" id="gmail-importante">--</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">☣️ Spam:</span>
+                    <span class="stat-value" id="gmail-spam">--</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">💡 No leídos:</span>
+                    <span class="stat-value" id="gmail-noleidos">--</span>
+                </div>
+            </div>
+
+            <div class="stat-section">
+                <h3>🌱 Colonia</h3>
+                <div class="stat-row">
+                    <span class="stat-label">Hongos vivos:</span>
+                    <span class="stat-value" id="hongos-vivos">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Marchitos:</span>
+                    <span class="stat-value" id="hongos-marchitos">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Bioluminiscentes:</span>
+                    <span class="stat-value" id="hongos-brillantes">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Salud:</span>
+                    <span class="stat-value" id="salud-ecosistema">--%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles -->
+        <div id="controls">
+            <button id="btn-pausar" class="btn">⏸️ Pausar</button>
+            <button id="btn-resetear" class="btn">🔄 Resetear</button>
+            <button id="btn-stats" class="btn active">📊 Stats</button>
+        </div>
+
+        <!-- Indicador de estado -->
+        <div id="status-indicator">
+            <div class="status-dot" id="backend-status"></div>
+            <span id="status-text">Conectando...</span>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading">
+        <div class="loader"></div>
+        <p>Inicializando colonia fúngica...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

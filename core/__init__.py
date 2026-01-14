@@ -1,0 +1,3 @@
+"""
+Osmotrofia - Core modules
+"""

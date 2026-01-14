@@ -1,0 +1,1531 @@
+{
+  "ambiente": {
+    "disco": {
+      "densidad_colonia": 0.3,
+      "descripcion": "Mucho espacio - Colonia expandida",
+      "distribucion": "dispersa",
+      "expansion": "amplia",
+      "patron": "circulo_de_hadas"
+    },
+    "humedad": {
+      "brillo": 0.2,
+      "descripcion": "Sustrato seco - Superficie opaca",
+      "humedad": 0.24,
+      "saturacion": 0.5,
+      "superficie": "mate_seca"
+    },
+    "metabolismo": {
+      "descripcion": "Reposo - Metabolismo bajo",
+      "intensidad": 0.3,
+      "metabolismo": "bajo",
+      "respiracion": "lenta",
+      "velocidad_animacion": 0.5
+    },
+    "ram": {
+      "absorcion": "baja",
+      "densidad_micelio": 0.3,
+      "descripcion": "Saturaci\u00f3n - Micelio delgado",
+      "porosidad": 0.2,
+      "red_hifas": "delgada"
+    },
+    "temperatura": {
+      "color": {
+        "b": 0.9,
+        "g": 0.8,
+        "r": 0.6
+      },
+      "descripcion": "Ambiente fresco - Crecimiento lento y denso",
+      "estado": "frio",
+      "textura": "humeda_suave",
+      "velocidad_crecimiento": 0.5
+    }
+  },
+  "bioluminiscencia": {
+    "activa": true,
+    "intensidad": 1.0,
+    "porcentaje_hongos": 0.5
+  },
+  "gmail": {
+    "importante": 201,
+    "no_leidos": 201,
+    "promociones": 201,
+    "social": 201,
+    "spam": 201,
+    "total": 201
+  },
+  "nutrientes": [
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "alta",
+        "color": {
+          "b": 0.9,
+          "g": 0.4,
+          "r": 0.3
+        },
+        "descripcion": "Nutriente de alta calidad - Azul violeta",
+        "energia": "alta",
+        "forma": "redondeada_grande",
+        "superficie": "lisa_brillante",
+        "tamano_base": 1.0,
+        "tamano_final": 2.0
+      },
+      "tipo": "importante"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "toxica",
+        "color": {
+          "b": 0.2,
+          "g": 0.8,
+          "r": 0.6
+        },
+        "descripcion": "Toxina - Verde amarillento enfermo",
+        "energia": "baja",
+        "forma": "irregular_deforme",
+        "superficie": "rugosa_manchada",
+        "tamano_base": 0.6,
+        "tamano_final": 1.2
+      },
+      "tipo": "spam"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "procesada",
+        "color": {
+          "b": 0.1,
+          "g": 0.6,
+          "r": 0.9
+        },
+        "descripcion": "Nutriente procesado - Naranja artificial",
+        "energia": "media",
+        "forma": "uniforme_sin_caracter",
+        "superficie": "lisa_plastica",
+        "tamano_base": 0.8,
+        "tamano_final": 1.6
+      },
+      "tipo": "promociones"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    },
+    {
+      "cantidad": 201,
+      "caracteristicas": {
+        "calidad": "media",
+        "color": {
+          "b": 0.8,
+          "g": 0.5,
+          "r": 0.7
+        },
+        "descripcion": "Nutriente social - P\u00farpura claro",
+        "energia": "media",
+        "forma": "agrupada",
+        "superficie": "normal",
+        "tamano_base": 0.7,
+        "tamano_final": 1.4
+      },
+      "tipo": "social"
+    }
+  ],
+  "salud": {
+    "ecosistema": {
+      "actividad": "moderada",
+      "color_general": "normal",
+      "descripcion": "Ecosistema estable - Colonia funcional",
+      "nivel": "bueno",
+      "reproduccion": "presente",
+      "salud_numerica": 61.8
+    },
+    "general": 67.8
+  },
+  "sistema": {
+    "bateria": {
+      "conectado": false,
+      "porcentaje": 24
+    },
+    "cpu": {
+      "nucleos": 10,
+      "temperatura": 43.9,
+      "uso": 5.9
+    },
+    "disco": {
+      "libre_gb": 744.3,
+      "total_gb": 926.35,
+      "uso": 2.2
+    },
+    "ram": {
+      "disponible_gb": 3.73,
+      "total_gb": 16.0,
+      "uso": 76.7
+    }
+  },
+  "timestamp": "2026-01-14T23:29:07.355575"
+}

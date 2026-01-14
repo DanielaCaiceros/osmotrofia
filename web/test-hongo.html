@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍄 Test - Hongo Individual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            background: #0a0a0a;
+            color: #e0e0e0;
+        }
+
+        #canvas3d {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(136, 255, 136, 0.3);
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+        }
+
+        #info h1 {
+            color: #88ff88;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        #info h2 {
+            color: #88ff88;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(136, 255, 136, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .stat-label {
+            color: #aaa;
+        }
+
+        .stat-value {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: rgba(0, 0, 0, 0.8);
+            color: #88ff88;
+            border: 1px solid rgba(136, 255, 136, 0.3);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        button:hover {
+            background: rgba(136, 255, 136, 0.2);
+            border-color: #88ff88;
+        }
+
+        .estado-vivo { color: #88ff88; }
+        .estado-naciendo { color: #88ffff; }
+        .estado-marchito { color: #ffaa44; }
+        .estado-muerto { color: #ff4444; }
+    </style>
+</head>
+<body>
+    <canvas id="canvas3d"></canvas>
+
+    <div id="info">
+        <h1>🍄 Test - Hongo Individual</h1>
+        <p style="color: #888; font-size: 12px; margin-bottom: 15px;">
+            Vista de prueba para observar un solo hongo en detalle
+        </p>
+
+        <h2>Estado del Hongo</h2>
+        <div class="stat">
+            <span class="stat-label">Estado:</span>
+            <span class="stat-value" id="estado">-</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Edad:</span>
+            <span class="stat-value" id="edad">0s</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Energía:</span>
+            <span class="stat-value" id="energia">100%</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Escala:</span>
+            <span class="stat-value" id="escala">0.0</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Bioluminiscente:</span>
+            <span class="stat-value" id="bio">No</span>
+        </div>
+
+        <h2>Ambiente Simulado</h2>
+        <div class="stat">
+            <span class="stat-label">CPU Temp:</span>
+            <span class="stat-value" id="temp">65°C</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Batería:</span>
+            <span class="stat-value" id="bat">75%</span>
+        </div>
+
+        <div class="controls">
+            <button id="btn-caliente">🔥 CPU Caliente</button>
+            <button id="btn-frio">❄️ CPU Frío</button>
+            <button id="btn-batbaja">🔋 Bat. Baja</button>
+            <button id="btn-batalta">⚡ Bat. Alta</button>
+            <button id="btn-bio">✨ Toggle Brillo</button>
+            <button id="btn-nuevo">🔄 Nuevo Hongo</button>
+        </div>
+
+        <p style="color: #666; font-size: 11px; margin-top: 15px;">
+            💡 Tip: Arrastra con el mouse para rotar la cámara
+        </p>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { HongoVivo } from './js/HongoVivo.js';
+
+        // Variables globales
+        let scene, camera, renderer, controls;
+        let hongo;
+        let clock = new THREE.Clock();
+        let ambiente;
+
+        // Ambiente inicial
+        ambiente = {
+            temperatura: {
+                estado: 'optimo',
+                velocidad_crecimiento: 1.0,
+                color: { r: 0.8, g: 0.7, b: 0.5 }
+            },
+            humedad: {
+                humedad: 0.75,
+                brillo: 0.75,
+                saturacion: 0.8
+            },
+            ram: {
+                absorcion: 'media',
+                densidad_micelio: 1.0
+            }
+        };
+
+        init();
+        animate();
+
+        function init() {
+            // Scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0a0a0a);
+
+            // Camera - MUY cerca del hongo
+            camera = new THREE.PerspectiveCamera(
+                50,
+                window.innerWidth / window.innerHeight,
+                0.1,
+                100
+            );
+            camera.position.set(0, 2, 4);
+            camera.lookAt(0, 1, 0);
+
+            // Renderer
+            const canvas = document.getElementById('canvas3d');
+            renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                antialias: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+
+            // Controls
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.minDistance = 2;
+            controls.maxDistance = 10;
+            controls.target.set(0, 1, 0);
+
+            // Luces
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+            scene.add(ambientLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 1.0);
+            dirLight.position.set(3, 5, 3);
+            dirLight.castShadow = true;
+            scene.add(dirLight);
+
+            const fillLight = new THREE.DirectionalLight(0x4444ff, 0.4);
+            fillLight.position.set(-3, 3, -3);
+            scene.add(fillLight);
+
+            // Suelo
+            const floorGeometry = new THREE.CircleGeometry(5, 32);
+            const floorMaterial = new THREE.MeshStandardMaterial({
+                color: 0x1a0f08,
+                roughness: 1.0
+            });
+            const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+            floor.rotation.x = -Math.PI / 2;
+            floor.receiveShadow = true;
+            scene.add(floor);
+
+            // Crear hongo inicial
+            crearNuevoHongo();
+
+            // Event listeners
+            window.addEventListener('resize', onWindowResize);
+            setupButtons();
+
+            console.log('🍄 Test de hongo individual iniciado');
+        }
+
+        function crearNuevoHongo() {
+            // Remover hongo anterior si existe
+            if (hongo) {
+                scene.remove(hongo.grupo);
+                hongo.destruir();
+            }
+
+            // Características de un hongo "importante"
+            const caracteristicas = {
+                color: { r: 0.3, g: 0.4, b: 0.9 },
+                tamano_final: 1.5,
+                forma: 'redondeada_grande'
+            };
+
+            // Crear nuevo hongo
+            hongo = new HongoVivo(
+                'importante',
+                [0, 0, 0],
+                caracteristicas,
+                ambiente
+            );
+
+            scene.add(hongo.grupo);
+            console.log('🍄 Nuevo hongo creado');
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const deltaTime = clock.getDelta();
+
+            // Evolucionar hongo
+            if (hongo) {
+                hongo.evolucionar(deltaTime, ambiente);
+                actualizarUI();
+            }
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        function actualizarUI() {
+            const estado = hongo.obtenerEstado();
+
+            // Estado
+            const estadoEl = document.getElementById('estado');
+            estadoEl.textContent = estado.estadoVida.toUpperCase();
+            estadoEl.className = `stat-value estado-${estado.estadoVida}`;
+
+            // Otros datos
+            document.getElementById('edad').textContent = `${estado.edad.toFixed(1)}s`;
+            document.getElementById('energia').textContent = `${(estado.energia * 100).toFixed(0)}%`;
+            document.getElementById('escala').textContent = estado.escala.toFixed(2);
+            document.getElementById('bio').textContent = estado.bioluminiscente ? 'Sí ✨' : 'No';
+        }
+
+        function setupButtons() {
+            // CPU Caliente
+            document.getElementById('btn-caliente').addEventListener('click', () => {
+                ambiente.temperatura = {
+                    estado: 'extremo',
+                    velocidad_crecimiento: 2.0,
+                    color: { r: 0.9, g: 0.3, b: 0.1 }
+                };
+                document.getElementById('temp').textContent = '95°C';
+                console.log('🔥 CPU Caliente');
+            });
+
+            // CPU Frío
+            document.getElementById('btn-frio').addEventListener('click', () => {
+                ambiente.temperatura = {
+                    estado: 'frio',
+                    velocidad_crecimiento: 0.5,
+                    color: { r: 0.6, g: 0.8, b: 0.9 }
+                };
+                document.getElementById('temp').textContent = '40°C';
+                console.log('❄️ CPU Frío');
+            });
+
+            // Batería Baja
+            document.getElementById('btn-batbaja').addEventListener('click', () => {
+                ambiente.humedad = {
+                    humedad: 0.2,
+                    brillo: 0.1,
+                    saturacion: 0.4
+                };
+                document.getElementById('bat').textContent = '20%';
+                console.log('🔋 Batería Baja');
+            });
+
+            // Batería Alta
+            document.getElementById('btn-batalta').addEventListener('click', () => {
+                ambiente.humedad = {
+                    humedad: 1.0,
+                    brillo: 0.9,
+                    saturacion: 1.0
+                };
+                document.getElementById('bat').textContent = '100%';
+                console.log('⚡ Batería Alta');
+            });
+
+            // Toggle Bioluminiscencia
+            document.getElementById('btn-bio').addEventListener('click', () => {
+                if (hongo.bioluminiscente) {
+                    hongo.desactivarBioluminiscencia();
+                    console.log('💡 Bioluminiscencia OFF');
+                } else {
+                    hongo.activarBioluminiscencia(0.9);
+                    console.log('✨ Bioluminiscencia ON');
+                }
+            });
+
+            // Nuevo Hongo
+            document.getElementById('btn-nuevo').addEventListener('click', () => {
+                crearNuevoHongo();
+            });
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+    </script>
+</body>
+</html>
