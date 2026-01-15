@@ -285,12 +285,11 @@ export class ColoniaViva {
             this.redMicelio.material.dispose();
         }
 
-        // Obtener solo hongos vivos
-        const hongosVivos = this.hongos.filter(h =>
-            h.estadoVida === 'vivo' || h.estadoVida === 'naciendo'
-        );
+        // Obtener TODOS los hongos (vivos, marchitos, muertos)
+        // Para mantener las conexiones incluso después de la muerte
+        const todosHongos = this.hongos;
 
-        if (hongosVivos.length < 2) {
+        if (todosHongos.length < 2) {
             return; // Necesitamos al menos 2 hongos para conectar
         }
 
@@ -298,12 +297,12 @@ export class ColoniaViva {
         const colors = [];
 
         // Conectar hongos cercanos (máximo 3 conexiones por hongo)
-        hongosVivos.forEach((hongo, i) => {
+        todosHongos.forEach((hongo, i) => {
             const pos1 = hongo.posicion;
             let conexiones = 0;
 
             // Buscar los 3 hongos más cercanos
-            const distancias = hongosVivos
+            const distancias = todosHongos
                 .map((h, idx) => ({
                     hongo: h,
                     dist: pos1.distanceTo(h.posicion),

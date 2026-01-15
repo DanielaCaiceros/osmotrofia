@@ -50,8 +50,14 @@ export class HongoVivo {
         this.color = this.generarColorVariado(caracteristicas.color);
         this.colorOriginal = this.color.clone();
 
+        // Color secundario para degradados
+        this.colorSecundario = this.generarColorSecundario(this.color);
+
         // Patrón de textura (manchas, rayas, etc.)
         this.patronTextura = this.seleccionarPatron();
+
+        // Decoraciones (bolitas, escamas, etc.)
+        this.tieneDecoraciones = Math.random() > 0.4; // 60% de probabilidad
 
         // Crear geometría 3D
         this.grupo = new THREE.Group();
@@ -191,6 +197,27 @@ export class HongoVivo {
         return new THREE.Color().setHSL(h.h, h.s, h.l);
     }
 
+    generarColorSecundario(colorPrimario) {
+        // Generar color complementario o análogo para degradados
+        const h = { h: 0, s: 0, l: 0 };
+        colorPrimario.getHSL(h);
+
+        const tipo = Math.random();
+        if (tipo < 0.4) {
+            // Color más oscuro (degradado vertical)
+            h.l = Math.max(0.1, h.l - 0.2 - Math.random() * 0.2);
+        } else if (tipo < 0.7) {
+            // Color más claro
+            h.l = Math.min(0.9, h.l + 0.15 + Math.random() * 0.15);
+        } else {
+            // Color análogo (matiz cercano)
+            h.h = (h.h + (Math.random() - 0.5) * 0.1) % 1;
+            h.s = Math.max(0, Math.min(1, h.s + (Math.random() - 0.5) * 0.2));
+        }
+
+        return new THREE.Color().setHSL(h.h, h.s, h.l);
+    }
+
     seleccionarPatron() {
         const patrones = ['liso', 'manchas', 'rayas', 'moteado', 'gradiente'];
         return {
@@ -205,43 +232,86 @@ export class HongoVivo {
 
         switch (patron.tipo) {
             case 'manchas':
-                // Manchas aleatorias
+                // Manchas aleatorias usando color secundario
                 const manchaNoise = Math.sin(x * 10) * Math.cos(z * 10);
                 if (manchaNoise > 0.3) {
-                    baseColor.multiplyScalar(0.7 + Math.random() * 0.3);
+                    return baseColor.lerp(this.colorSecundario, 0.5 + Math.random() * 0.3);
                 }
                 break;
 
             case 'rayas':
-                // Rayas radiales
+                // Rayas radiales alternando colores
                 const angulo = Math.atan2(z, x);
                 const rayaNoise = Math.sin(angulo * 8);
                 if (rayaNoise > 0) {
-                    baseColor.multiplyScalar(0.8);
+                    return this.colorSecundario.clone();
                 }
                 break;
 
             case 'moteado':
-                // Puntos aleatorios
+                // Puntos aleatorios con color secundario
                 if (Math.random() > 0.7) {
-                    baseColor.multiplyScalar(0.6 + Math.random() * 0.4);
+                    return this.colorSecundario.clone().multiplyScalar(0.9 + Math.random() * 0.2);
                 }
                 break;
 
             case 'gradiente':
-                // Gradiente vertical
-                const factor = 1 - (y / this.formaBase.capAltura);
-                baseColor.multiplyScalar(0.7 + factor * 0.3);
-                break;
+                // Degradado vertical de color primario a secundario
+                const factorGrad = Math.abs(y) / this.formaBase.capAltura;
+                return baseColor.clone().lerp(this.colorSecundario, factorGrad);
 
             case 'liso':
             default:
-                // Color uniforme con ligera variación
-                baseColor.multiplyScalar(0.95 + Math.random() * 0.1);
-                break;
+                // Color con leve variación hacia secundario
+                const lerpFactor = Math.random() * 0.15;
+                return baseColor.lerp(this.colorSecundario, lerpFactor);
         }
 
         return baseColor;
+    }
+
+    agregarDecoraciones() {
+        // Número de decoraciones según tamaño del cap
+        const numDecoraciones = Math.floor(5 + Math.random() * 15);
+        const tipoDecoracion = Math.random();
+
+        for (let i = 0; i < numDecoraciones; i++) {
+            let decoracion;
+
+            if (tipoDecoracion < 0.5) {
+                // Bolitas pequeñas
+                const tamano = 0.05 + Math.random() * 0.08;
+                const geoDecor = new THREE.SphereGeometry(tamano, 8, 8);
+                const matDecor = new THREE.MeshStandardMaterial({
+                    color: this.colorSecundario.clone().multiplyScalar(1.2),
+                    roughness: 0.4,
+                    metalness: 0.1
+                });
+                decoracion = new THREE.Mesh(geoDecor, matDecor);
+            } else {
+                // Escamas/picos pequeños
+                const tamano = 0.04 + Math.random() * 0.06;
+                const geoDecor = new THREE.ConeGeometry(tamano, tamano * 2, 6);
+                const matDecor = new THREE.MeshStandardMaterial({
+                    color: this.color.clone().multiplyScalar(0.7),
+                    roughness: 0.8
+                });
+                decoracion = new THREE.Mesh(geoDecor, matDecor);
+            }
+
+            // Posicionar aleatoriamente en la superficie del cap
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.random() * Math.PI * this.formaBase.curvatura;
+
+            const x = this.formaBase.capRadio * Math.sin(phi) * Math.cos(theta);
+            const y = this.formaBase.capRadio * Math.cos(phi) * 0.5;
+            const z = this.formaBase.capRadio * Math.sin(phi) * Math.sin(theta);
+
+            decoracion.position.set(x, y, z);
+            decoracion.lookAt(x * 2, y * 2, z * 2); // Orientar hacia afuera
+
+            this.cap.add(decoracion);
+        }
     }
 
     crearGeometria() {
@@ -298,22 +368,53 @@ export class HongoVivo {
         this.cap.castShadow = true;
         this.cap.receiveShadow = true;
 
-        // STEM (tallo) - con variaciones orgánicas
-        const stemGeometry = new THREE.CylinderGeometry(
-            this.formaBase.stemGrosor * (0.7 + Math.random() * 0.2),
-            this.formaBase.stemGrosor * (0.9 + Math.random() * 0.2),
-            this.formaBase.stemAltura,
-            16
-        );
+        // STEM (tallo) - con variaciones orgánicas NO CILÍNDRICAS
+        const tipoStem = Math.random();
+        let stemGeometry;
+
+        if (tipoStem < 0.3) {
+            // Tallo que se ensancha en el medio (bulboso)
+            stemGeometry = new THREE.CylinderGeometry(
+                this.formaBase.stemGrosor * (0.6 + Math.random() * 0.2),
+                this.formaBase.stemGrosor * (1.2 + Math.random() * 0.3),
+                this.formaBase.stemAltura,
+                16
+            );
+        } else if (tipoStem < 0.6) {
+            // Tallo irregular con múltiples segmentos
+            stemGeometry = new THREE.CylinderGeometry(
+                this.formaBase.stemGrosor * (0.8 + Math.random() * 0.3),
+                this.formaBase.stemGrosor * (0.7 + Math.random() * 0.4),
+                this.formaBase.stemAltura,
+                12
+            );
+        } else {
+            // Tallo cónico suave
+            stemGeometry = new THREE.CylinderGeometry(
+                this.formaBase.stemGrosor * (0.5 + Math.random() * 0.2),
+                this.formaBase.stemGrosor * (1.0 + Math.random() * 0.3),
+                this.formaBase.stemAltura,
+                16
+            );
+        }
 
         // Deformar stem para que no sea perfectamente recto
         const stemPositions = stemGeometry.attributes.position;
         for (let i = 0; i < stemPositions.count; i++) {
+            const x = stemPositions.getX(i);
             const y = stemPositions.getY(i);
-            const noiseX = Math.sin(y * 5) * 0.03;
-            const noiseZ = Math.cos(y * 3) * 0.03;
-            stemPositions.setX(i, stemPositions.getX(i) + noiseX);
-            stemPositions.setZ(i, stemPositions.getZ(i) + noiseZ);
+            const z = stemPositions.getZ(i);
+
+            // Curvatura y bumps orgánicos
+            const curvatura = Math.sin(y * 2) * 0.04;
+            const bumpX = Math.sin(y * 8 + x * 10) * 0.02;
+            const bumpZ = Math.cos(y * 6 + z * 10) * 0.02;
+
+            // Variación radial (hacer el stem no perfectamente redondo)
+            const variacionRadial = (Math.random() - 0.5) * 0.15;
+
+            stemPositions.setX(i, x * (1 + variacionRadial) + curvatura + bumpX);
+            stemPositions.setZ(i, z * (1 + variacionRadial) + bumpZ);
         }
         stemPositions.needsUpdate = true;
 
@@ -351,6 +452,11 @@ export class HongoVivo {
 
         this.gills = new THREE.Mesh(gillsGeometry, this.gillsMaterial);
         this.gills.position.y = -this.formaBase.capAltura * (0.4 + Math.random() * 0.2);
+
+        // Decoraciones en el cap (bolitas, escamas, verrugas)
+        if (this.tieneDecoraciones) {
+            this.agregarDecoraciones();
+        }
 
         // Ensamblar
         this.cap.add(this.gills);
