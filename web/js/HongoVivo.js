@@ -270,90 +270,403 @@ export class HongoVivo {
         return baseColor;
     }
 
+    // Simplex-like noise function (sin/cos based, no library needed)
+    simpleNoise2D(x, y) {
+        return Math.sin(x * 2.1 + Math.cos(y * 1.7)) *
+               Math.cos(y * 1.9 + Math.sin(x * 2.3)) * 0.5 + 0.5;
+    }
+
+    // Radial noise - affects radius
+    radialNoise(angle, t) {
+        const n = this.simpleNoise2D(t * Math.cos(angle), t * Math.sin(angle));
+        return -Math.abs(n - 0.5) * 0.5;
+    }
+
+    // Angular noise - affects rotation
+    angularNoise(angle, t) {
+        return this.simpleNoise2D(t * Math.cos(angle), t * Math.sin(angle)) * 0.2 - 0.1;
+    }
+
+    // Normal noise - affects surface bumps
+    normalNoise(angle, t) {
+        return this.simpleNoise2D(t * Math.cos(angle) * 3, t * Math.sin(angle) * 3) * t * 0.15;
+    }
+
     agregarDecoraciones() {
         // Número de decoraciones según tamaño del cap
-        const numDecoraciones = Math.floor(5 + Math.random() * 15);
+        const numDecoraciones = Math.floor(8 + Math.random() * 20);
         const tipoDecoracion = Math.random();
 
         for (let i = 0; i < numDecoraciones; i++) {
+            // Posición aleatoria en la superficie del cap (parámetros t y angle)
+            const t = Math.random() * 0.8; // No hasta el borde
+            const angle = Math.random() * Math.PI * 2;
+
+            // Obtener punto en la superficie del cap
+            const radius = this.formaBase.capRadio * t;
+            const height = this.formaBase.capAltura * (1 - t * 0.7);
+
+            const centerX = Math.cos(angle) * radius;
+            const centerY = height;
+            const centerZ = Math.sin(angle) * radius;
+            const center = new THREE.Vector3(centerX, centerY, centerZ);
+
+            // Normal en ese punto
+            const normal = new THREE.Vector3(centerX, height * 0.3, centerZ).normalize();
+
             let decoracion;
 
-            if (tipoDecoracion < 0.5) {
-                // Bolitas pequeñas
-                const tamano = 0.05 + Math.random() * 0.08;
-                const geoDecor = new THREE.SphereGeometry(tamano, 8, 8);
+            if (tipoDecoracion < 0.4) {
+                // Escamas orgánicas (como en el artículo)
+                const scaleRadius = 0.08 + Math.random() * 0.12;
+                const numVertices = 8 + Math.floor(Math.random() * 6);
+                const scalePositions = [];
+                const scaleIndices = [];
+
+                // Centro de la escama
+                scalePositions.push(0, 0.02, 0);
+
+                // Vértices alrededor
+                for (let j = 0; j < numVertices; j++) {
+                    const a = (j / numVertices) * Math.PI * 2;
+                    const r = scaleRadius * (0.7 + Math.random() * 0.5);
+                    const noiseHeight = this.simpleNoise2D(j, i) * 0.03;
+
+                    scalePositions.push(
+                        Math.cos(a) * r,
+                        noiseHeight,
+                        Math.sin(a) * r
+                    );
+                }
+
+                // Crear triángulos desde el centro
+                for (let j = 0; j < numVertices; j++) {
+                    scaleIndices.push(0, j + 1, ((j + 1) % numVertices) + 1);
+                }
+
+                const scaleGeo = new THREE.BufferGeometry();
+                scaleGeo.setAttribute('position', new THREE.Float32BufferAttribute(scalePositions, 3));
+                scaleGeo.setIndex(scaleIndices);
+                scaleGeo.computeVertexNormals();
+
+                const scaleMat = new THREE.MeshStandardMaterial({
+                    color: this.colorSecundario.clone().multiplyScalar(0.9 + Math.random() * 0.3),
+                    roughness: 0.8,
+                    side: THREE.DoubleSide
+                });
+
+                decoracion = new THREE.Mesh(scaleGeo, scaleMat);
+            } else if (tipoDecoracion < 0.7) {
+                // Warts/bumps
+                const size = 0.04 + Math.random() * 0.06;
+                const geoDecor = new THREE.SphereGeometry(size, 6, 6);
                 const matDecor = new THREE.MeshStandardMaterial({
-                    color: this.colorSecundario.clone().multiplyScalar(1.2),
-                    roughness: 0.4,
-                    metalness: 0.1
+                    color: this.colorSecundario.clone().multiplyScalar(1.1),
+                    roughness: 0.5
                 });
                 decoracion = new THREE.Mesh(geoDecor, matDecor);
             } else {
-                // Escamas/picos pequeños
-                const tamano = 0.04 + Math.random() * 0.06;
-                const geoDecor = new THREE.ConeGeometry(tamano, tamano * 2, 6);
+                // Pequeños conos
+                const size = 0.03 + Math.random() * 0.05;
+                const geoDecor = new THREE.ConeGeometry(size, size * 1.5, 5);
                 const matDecor = new THREE.MeshStandardMaterial({
-                    color: this.color.clone().multiplyScalar(0.7),
-                    roughness: 0.8
+                    color: this.color.clone().multiplyScalar(0.75),
+                    roughness: 0.85
                 });
                 decoracion = new THREE.Mesh(geoDecor, matDecor);
             }
 
-            // Posicionar aleatoriamente en la superficie del cap
-            const theta = Math.random() * Math.PI * 2;
-            const phi = Math.random() * Math.PI * this.formaBase.curvatura;
-
-            const x = this.formaBase.capRadio * Math.sin(phi) * Math.cos(theta);
-            const y = this.formaBase.capRadio * Math.cos(phi) * 0.5;
-            const z = this.formaBase.capRadio * Math.sin(phi) * Math.sin(theta);
-
-            decoracion.position.set(x, y, z);
-            decoracion.lookAt(x * 2, y * 2, z * 2); // Orientar hacia afuera
+            // Posicionar y orientar hacia la normal
+            decoracion.position.copy(center);
+            decoracion.lookAt(center.clone().add(normal));
 
             this.cap.add(decoracion);
         }
+
+        // Anillo en el tallo (ring/annulus) - común en muchos hongos
+        if (Math.random() > 0.6 && this.formaBase.stemAltura > 1.0) {
+            this.agregarAnillo();
+        }
+    }
+
+    agregarAnillo() {
+        // Ring around the stem
+        const ringPos = -this.formaBase.stemAltura * (0.3 + Math.random() * 0.3);
+        const ringRadio = this.formaBase.stemGrosor * 1.5;
+        const ringGrosor = 0.05 + Math.random() * 0.03;
+
+        const geoRing = new THREE.TorusGeometry(ringRadio, ringGrosor, 8, 16);
+        const matRing = new THREE.MeshStandardMaterial({
+            color: this.color.clone().multiplyScalar(0.9),
+            roughness: 0.7
+        });
+
+        const ring = new THREE.Mesh(geoRing, matRing);
+        ring.rotation.x = Math.PI / 2;
+        ring.position.y = ringPos;
+
+        this.stem.add(ring);
+    }
+
+    crearStipeRealista() {
+        // Parámetros de resolución
+        const vSegments = 30; // segmentos verticales
+        const rSegments = 20; // segmentos radiales
+
+        // Crear curva central del stipe (spline con curvatura)
+        const curvePoints = [];
+        const numCurvePoints = 5;
+
+        for (let i = 0; i < numCurvePoints; i++) {
+            const t = i / (numCurvePoints - 1);
+            const y = -this.formaBase.stemAltura / 2 + t * this.formaBase.stemAltura;
+
+            // Curvatura del tallo
+            const curvX = Math.sin(t * Math.PI * 2) * this.formaBase.stemGrosor * 0.3;
+            const curvZ = Math.cos(t * Math.PI * 1.5) * this.formaBase.stemGrosor * 0.2;
+
+            curvePoints.push(new THREE.Vector3(curvX, y, curvZ));
+        }
+
+        const stipeCurve = new THREE.CatmullRomCurve3(curvePoints);
+
+        // Función de radio que varía a lo largo del tallo
+        const stipeRadius = (t) => {
+            // Radio base
+            let radius = this.formaBase.stemGrosor;
+
+            // Variación según tipo de forma
+            if (this.tipoForma === 'parasol' || this.tipoForma === 'campana') {
+                // Más delgado, se adelgaza hacia arriba
+                radius *= (1.2 - t * 0.6);
+            } else if (this.tipoForma === 'bola') {
+                // Muy grueso abajo, fino arriba
+                radius *= (1.5 - t * 1.2);
+            } else if (this.tipoForma === 'ostra') {
+                // Muy corto y grueso
+                radius *= 1.3;
+            } else {
+                // Forma natural: más grueso en la base
+                radius *= (1.0 + (1 - t) * 0.4);
+            }
+
+            // Añadir noise al radio para hacerlo orgánico
+            const noiseVal = this.simpleNoise2D(t * 3, t * 2);
+            radius *= (0.9 + noiseVal * 0.3);
+
+            return radius;
+        };
+
+        // Crear geometría del stipe
+        const positions = [];
+        const indices = [];
+        const uvs = [];
+
+        // Generar vertices
+        for (let i = 0; i <= vSegments; i++) {
+            const t = i / vSegments;
+            const point = stipeCurve.getPointAt(t);
+            const tangent = stipeCurve.getTangentAt(t);
+            const radius = stipeRadius(t);
+
+            // Calcular sistema de coordenadas local (Frenet frame)
+            const up = new THREE.Vector3(0, 1, 0);
+            const normal = new THREE.Vector3();
+            normal.crossVectors(up, tangent).normalize();
+            const binormal = new THREE.Vector3();
+            binormal.crossVectors(tangent, normal).normalize();
+
+            // Crear anillo de vertices
+            for (let j = 0; j <= rSegments; j++) {
+                const angle = (j / rSegments) * Math.PI * 2;
+
+                // Noise angular para hacer la superficie irregular
+                const angNoise = this.angularNoise(angle, t);
+                const radNoise = this.radialNoise(angle, t);
+                const normNoise = this.normalNoise(angle, t);
+
+                const r = radius * (1 + radNoise * 0.2);
+                const a = angle + angNoise;
+
+                // Posición en el anillo
+                const ringX = Math.cos(a) * r;
+                const ringZ = Math.sin(a) * r;
+
+                // Transformar al espacio 3D usando Frenet frame
+                const vertex = new THREE.Vector3();
+                vertex.copy(point);
+                vertex.add(normal.clone().multiplyScalar(ringX));
+                vertex.add(binormal.clone().multiplyScalar(ringZ));
+
+                // Añadir noise normal (bumps en superficie)
+                const surfaceNormal = new THREE.Vector3(
+                    Math.cos(a),
+                    0,
+                    Math.sin(a)
+                );
+                vertex.add(surfaceNormal.multiplyScalar(normNoise * 0.1));
+
+                positions.push(vertex.x, vertex.y, vertex.z);
+                uvs.push(j / rSegments, t);
+            }
+        }
+
+        // Generar indices (caras)
+        for (let i = 0; i < vSegments; i++) {
+            for (let j = 0; j < rSegments; j++) {
+                const a = i * (rSegments + 1) + j;
+                const b = a + rSegments + 1;
+                const c = a + 1;
+                const d = b + 1;
+
+                indices.push(a, b, c);
+                indices.push(b, d, c);
+            }
+        }
+
+        // Crear geometría
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+        geometry.setIndex(indices);
+        geometry.computeVertexNormals();
+
+        return geometry;
+    }
+
+    crearCapRealista() {
+        // Parámetros de resolución basados en el artículo
+        const rSegments = 30; // segmentos radiales
+        const cSegments = 20; // segmentos circulares (ángulo)
+
+        // Crear curva del perfil del cap (spline que define la forma)
+        const profilePoints = [];
+        const numProfilePoints = 6;
+
+        for (let i = 0; i < numProfilePoints; i++) {
+            const t = i / (numProfilePoints - 1);
+
+            // Forma del perfil según tipo de hongo
+            let x, y;
+
+            if (this.tipoForma === 'plano') {
+                // Cap plano y ancho
+                x = t * this.formaBase.capRadio;
+                y = this.formaBase.capAltura * (1 - t * t * 0.5);
+            } else if (this.tipoForma === 'conico') {
+                // Cap cónico puntiagudo
+                x = t * this.formaBase.capRadio * (1 - t * 0.3);
+                y = this.formaBase.capAltura * (1 - t * 0.8);
+            } else if (this.tipoForma === 'campana') {
+                // Cap en forma de campana
+                x = t * this.formaBase.capRadio * (0.3 + t * 0.7);
+                y = this.formaBase.capAltura * (1 - t * 1.2);
+            } else if (this.tipoForma === 'bola') {
+                // Cap esférico completo
+                const angle = t * Math.PI;
+                x = Math.sin(angle) * this.formaBase.capRadio;
+                y = Math.cos(angle) * this.formaBase.capRadio;
+            } else {
+                // Forma redondeada clásica
+                const angle = t * Math.PI * 0.5;
+                x = Math.sin(angle) * this.formaBase.capRadio;
+                y = Math.cos(angle) * this.formaBase.capAltura;
+            }
+
+            profilePoints.push(new THREE.Vector2(x, y));
+        }
+
+        const capCurve = new THREE.SplineCurve(profilePoints);
+
+        // Generar superficie del cap
+        const positions = [];
+        const indices = [];
+        const colors = [];
+        const uvs = [];
+
+        // Función para obtener punto en la superficie del cap con noise
+        const getCapSurfacePoint = (angle, t) => {
+            // Obtener punto base de la curva
+            const profilePoint = capCurve.getPointAt(t);
+            let x = profilePoint.x;
+            let y = profilePoint.y;
+
+            // Aplicar noise radial (afecta el radio)
+            const radNoise = this.radialNoise(angle, t);
+            const newRadius = x * (1 + radNoise);
+
+            // Aplicar noise angular
+            const angNoise = this.angularNoise(angle, t);
+            const newAngle = angle + angNoise;
+
+            // Aplicar noise normal (bumps perpendiculares a la superficie)
+            const normNoise = this.normalNoise(angle, t);
+
+            // Calcular posición 3D
+            const surfacePoint = new THREE.Vector3(
+                Math.cos(newAngle) * newRadius,
+                y,
+                Math.sin(newAngle) * newRadius
+            );
+
+            // Calcular tangente de la curva para el noise normal
+            const tangent = capCurve.getTangentAt(t);
+            const surfaceNormal = new THREE.Vector3(
+                Math.cos(newAngle) * tangent.y,
+                -tangent.x,
+                Math.sin(newAngle) * tangent.y
+            ).normalize();
+
+            // Aplicar noise normal
+            surfacePoint.add(surfaceNormal.multiplyScalar(normNoise));
+
+            return surfacePoint;
+        };
+
+        // Generar vértices
+        for (let i = 0; i <= rSegments; i++) {
+            const t = i / rSegments;
+
+            for (let j = 0; j <= cSegments; j++) {
+                const angle = (j / cSegments) * Math.PI * 2;
+
+                const point = getCapSurfacePoint(angle, t);
+                positions.push(point.x, point.y, point.z);
+
+                // Color con degradado
+                const vertexColor = this.calcularColorVertice(point.x, point.y, point.z);
+                colors.push(vertexColor.r, vertexColor.g, vertexColor.b);
+
+                uvs.push(j / cSegments, t);
+            }
+        }
+
+        // Generar índices
+        for (let i = 0; i < rSegments; i++) {
+            for (let j = 0; j < cSegments; j++) {
+                const a = i * (cSegments + 1) + j;
+                const b = a + cSegments + 1;
+                const c = a + 1;
+                const d = b + 1;
+
+                indices.push(a, b, c);
+                indices.push(b, d, c);
+            }
+        }
+
+        const capGeometry = new THREE.BufferGeometry();
+        capGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        capGeometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+        capGeometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+        capGeometry.setIndex(indices);
+        capGeometry.computeVertexNormals();
+
+        return capGeometry;
     }
 
     crearGeometria() {
-        // CAP (sombrero del hongo) - forma según tipo
-        const capGeometry = new THREE.SphereGeometry(
-            this.formaBase.capRadio,
-            32,
-            16,
-            0,
-            Math.PI * 2,
-            0,
-            Math.PI * this.formaBase.curvatura
-        );
-
-        // Deformar para hacerlo más orgánico + aplicar patrón
-        const positions = capGeometry.attributes.position;
-        const colors = [];
-
-        for (let i = 0; i < positions.count; i++) {
-            const x = positions.getX(i);
-            const y = positions.getY(i);
-            const z = positions.getZ(i);
-
-            // Ruido orgánico
-            const noise = (Math.random() - 0.5) * 0.08;
-            positions.setY(i, y + noise);
-
-            // Deformación según tipo de forma
-            if (this.tipoForma === 'irregular') {
-                const noiseX = (Math.random() - 0.5) * 0.1;
-                const noiseZ = (Math.random() - 0.5) * 0.1;
-                positions.setX(i, x + noiseX);
-                positions.setZ(i, z + noiseZ);
-            }
-
-            // Colores vertex para patrones
-            const vertexColor = this.calcularColorVertice(x, y, z);
-            colors.push(vertexColor.r, vertexColor.g, vertexColor.b);
-        }
-
-        positions.needsUpdate = true;
-        capGeometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+        // CAP usando spline realista
+        const capGeometry = this.crearCapRealista();
 
         this.capMaterial = new THREE.MeshStandardMaterial({
             color: this.color,
@@ -368,55 +681,8 @@ export class HongoVivo {
         this.cap.castShadow = true;
         this.cap.receiveShadow = true;
 
-        // STEM (tallo) - con variaciones orgánicas NO CILÍNDRICAS
-        const tipoStem = Math.random();
-        let stemGeometry;
-
-        if (tipoStem < 0.3) {
-            // Tallo que se ensancha en el medio (bulboso)
-            stemGeometry = new THREE.CylinderGeometry(
-                this.formaBase.stemGrosor * (0.6 + Math.random() * 0.2),
-                this.formaBase.stemGrosor * (1.2 + Math.random() * 0.3),
-                this.formaBase.stemAltura,
-                16
-            );
-        } else if (tipoStem < 0.6) {
-            // Tallo irregular con múltiples segmentos
-            stemGeometry = new THREE.CylinderGeometry(
-                this.formaBase.stemGrosor * (0.8 + Math.random() * 0.3),
-                this.formaBase.stemGrosor * (0.7 + Math.random() * 0.4),
-                this.formaBase.stemAltura,
-                12
-            );
-        } else {
-            // Tallo cónico suave
-            stemGeometry = new THREE.CylinderGeometry(
-                this.formaBase.stemGrosor * (0.5 + Math.random() * 0.2),
-                this.formaBase.stemGrosor * (1.0 + Math.random() * 0.3),
-                this.formaBase.stemAltura,
-                16
-            );
-        }
-
-        // Deformar stem para que no sea perfectamente recto
-        const stemPositions = stemGeometry.attributes.position;
-        for (let i = 0; i < stemPositions.count; i++) {
-            const x = stemPositions.getX(i);
-            const y = stemPositions.getY(i);
-            const z = stemPositions.getZ(i);
-
-            // Curvatura y bumps orgánicos
-            const curvatura = Math.sin(y * 2) * 0.04;
-            const bumpX = Math.sin(y * 8 + x * 10) * 0.02;
-            const bumpZ = Math.cos(y * 6 + z * 10) * 0.02;
-
-            // Variación radial (hacer el stem no perfectamente redondo)
-            const variacionRadial = (Math.random() - 0.5) * 0.15;
-
-            stemPositions.setX(i, x * (1 + variacionRadial) + curvatura + bumpX);
-            stemPositions.setZ(i, z * (1 + variacionRadial) + bumpZ);
-        }
-        stemPositions.needsUpdate = true;
+        // STEM (tallo) - Usando curva spline como en el artículo
+        const stemGeometry = this.crearStipeRealista();
 
         // Color del stem con variación
         const stemColor = this.color.clone().multiplyScalar(0.6 + Math.random() * 0.2);
@@ -432,26 +698,48 @@ export class HongoVivo {
         this.stem.receiveShadow = true;
         this.stem.position.y = -this.formaBase.capAltura;
 
-        // GILLS (láminas debajo del cap) - con textura variada
-        const gillsRadio = this.formaBase.capRadio * (0.92 + Math.random() * 0.06);
-        const gillsGeometry = new THREE.CylinderGeometry(
-            gillsRadio,
-            gillsRadio,
-            0.08 + Math.random() * 0.04,
-            32
-        );
+        // GILLS (láminas debajo del cap) - láminas radiales realistas
+        const gillsGrupo = new THREE.Group();
+        const numGills = 20 + Math.floor(Math.random() * 20); // 20-40 láminas
+        const gillsRadio = this.formaBase.capRadio * 0.95;
+        const gillsAltura = 0.15 + Math.random() * 0.1;
 
         // Color de gills más oscuro y variado
         const gillsColor = this.color.clone().multiplyScalar(0.4 + Math.random() * 0.2);
 
-        this.gillsMaterial = new THREE.MeshStandardMaterial({
-            color: gillsColor,
-            roughness: 0.95 + Math.random() * 0.05,
-            side: THREE.DoubleSide
-        });
+        for (let i = 0; i < numGills; i++) {
+            const angle = (i / numGills) * Math.PI * 2;
 
-        this.gills = new THREE.Mesh(gillsGeometry, this.gillsMaterial);
-        this.gills.position.y = -this.formaBase.capAltura * (0.4 + Math.random() * 0.2);
+            // Cada gill es una lámina fina
+            const gillGeometry = new THREE.PlaneGeometry(gillsRadio, gillsAltura, 1, 4);
+
+            // Curvar la lámina ligeramente
+            const gillPositions = gillGeometry.attributes.position;
+            for (let j = 0; j < gillPositions.count; j++) {
+                const x = gillPositions.getX(j);
+                const y = gillPositions.getY(j);
+                const curve = Math.abs(x / gillsRadio) * 0.05;
+                gillPositions.setY(j, y - curve);
+            }
+            gillPositions.needsUpdate = true;
+
+            const gillMaterial = new THREE.MeshStandardMaterial({
+                color: gillsColor,
+                roughness: 0.95,
+                side: THREE.DoubleSide,
+                transparent: true,
+                opacity: 0.9
+            });
+
+            const gill = new THREE.Mesh(gillGeometry, gillMaterial);
+            gill.rotation.y = angle;
+            gill.position.y = -gillsAltura / 2;
+
+            gillsGrupo.add(gill);
+        }
+
+        this.gills = gillsGrupo;
+        this.gills.position.y = -this.formaBase.capAltura * (0.3 + Math.random() * 0.2);
 
         // Decoraciones en el cap (bolitas, escamas, verrugas)
         if (this.tieneDecoraciones) {

@@ -188,45 +188,75 @@ export class ColoniaViva {
 
     calcularPosicion(tipo, discoInfo) {
         const patron = discoInfo?.patron || 'agrupado';
-        let radio, angulo;
+        const minDistancia = 0.8; // Distancia mínima entre hongos
+        const maxIntentos = 30;
 
-        switch (patron) {
-            case 'circulo_de_hadas':
-                // Distribución en anillo
-                angulo = Math.random() * Math.PI * 2;
-                radio = this.radioColonia * (0.6 + Math.random() * 0.4);
-                break;
+        let posicionValida = null;
+        let intentos = 0;
 
-            case 'agrupado':
-                // Distribución compacta
-                angulo = Math.random() * Math.PI * 2;
-                radio = this.radioColonia * Math.random() * 0.5;
-                break;
+        while (!posicionValida && intentos < maxIntentos) {
+            let radio, angulo;
 
-            case 'apretado':
-                // Muy cerca del centro
-                angulo = Math.random() * Math.PI * 2;
-                radio = this.radioColonia * Math.random() * 0.3;
-                break;
+            switch (patron) {
+                case 'circulo_de_hadas':
+                    // Distribución en anillo
+                    angulo = Math.random() * Math.PI * 2;
+                    radio = this.radioColonia * (0.6 + Math.random() * 0.4);
+                    break;
 
-            default:
-                // Distribución aleatoria
-                angulo = Math.random() * Math.PI * 2;
-                radio = this.radioColonia * Math.random();
+                case 'agrupado':
+                    // Distribución compacta
+                    angulo = Math.random() * Math.PI * 2;
+                    radio = this.radioColonia * Math.random() * 0.5;
+                    break;
+
+                case 'apretado':
+                    // Muy cerca del centro
+                    angulo = Math.random() * Math.PI * 2;
+                    radio = this.radioColonia * Math.random() * 0.3;
+                    break;
+
+                default:
+                    // Distribución aleatoria
+                    angulo = Math.random() * Math.PI * 2;
+                    radio = this.radioColonia * Math.random();
+            }
+
+            const x = Math.cos(angulo) * radio;
+            const z = Math.sin(angulo) * radio;
+
+            // Ajustar según tipo (importantes al centro, spam en periferia)
+            let factorPosicion = 1.0;
+            if (tipo === 'importante') {
+                factorPosicion = 0.6;
+            } else if (tipo === 'spam') {
+                factorPosicion = 1.3;
+            }
+
+            const posicionCandidato = [x * factorPosicion, 0, z * factorPosicion];
+
+            // Verificar colisión con hongos existentes
+            let hayColision = false;
+            for (const hongo of this.hongos) {
+                const dx = posicionCandidato[0] - hongo.posicion.x;
+                const dz = posicionCandidato[2] - hongo.posicion.z;
+                const distancia = Math.sqrt(dx * dx + dz * dz);
+
+                if (distancia < minDistancia) {
+                    hayColision = true;
+                    break;
+                }
+            }
+
+            if (!hayColision) {
+                posicionValida = posicionCandidato;
+            }
+
+            intentos++;
         }
 
-        const x = Math.cos(angulo) * radio;
-        const z = Math.sin(angulo) * radio;
-
-        // Ajustar según tipo (importantes al centro, spam en periferia)
-        let factorPosicion = 1.0;
-        if (tipo === 'importante') {
-            factorPosicion = 0.6;
-        } else if (tipo === 'spam') {
-            factorPosicion = 1.3;
-        }
-
-        return [x * factorPosicion, 0, z * factorPosicion];
+        // Si no encontramos posición válida, usar la última candidata
+        return posicionValida || [Math.random() * 2 - 1, 0, Math.random() * 2 - 1];
     }
 
     actualizarBioluminiscencia(bioInfo) {
